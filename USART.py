@@ -43,7 +43,7 @@ if len(plist)<=0:
     print("No serial port founded!")
 else:
     #serial_port=list(plist[0])[0]
-    USART=serial.Serial("COM4",baudrate=9600,bytesize=8,stopbits=1,parity='N',timeout=None)
+    USART=serial.Serial("COM8",baudrate=115200,bytesize=8,stopbits=1,parity='N',timeout=2)
     USART.setDTR(True)
     USART.setRTS(True)
     USART.setRTS(False)
@@ -80,8 +80,14 @@ plt.plot(dac_array,label="Piezo feedback")
 plt.legend()
 #plt.pause(1)
 plt.savefig('test2png.png')
-"""
+
 USART.write("test1\n".encode())
-result=USART.readline()
-print(result)
+result1=USART.readline()
+print(result1)
+#result2=USART.readline()
+#print(result2)
 USART.close()
+"""
+while 1:
+    result=USART.read(8)
+    print(result)
